@@ -67,7 +67,10 @@ while ~isempty(email_contents)
     % Stem the word 
     % (the porterStemmer sometimes has issues, so we use a try catch block)
     try str = porterStemmer(strtrim(str)); 
-    catch str = ''; continue;
+    catch
+        str = '';
+        
+        continue;
     end;
 
     % Skip the word if it is too short
@@ -98,7 +101,15 @@ while ~isempty(email_contents)
     %
 
 
-
+    for idx = 1:length(vocabList)
+        
+        if strcmp(str, vocabList{idx}) == 1
+            word_indices = [ word_indices; idx ];
+        end
+    
+    end
+    
+    
 
 
 
